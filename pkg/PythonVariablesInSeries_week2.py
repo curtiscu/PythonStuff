@@ -21,7 +21,6 @@ print("'empty_list' content: {}".format(empty_list))
 ages = [19,21,20]
 
 
-
 print("ages: {}".format(ages))
 
 student1_details = [20, 'Michael Kane', 79]
