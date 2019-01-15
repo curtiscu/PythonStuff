@@ -53,3 +53,33 @@ pp(0,'\n==== MATH ====')
 pp(1,'factorial(6): {0}'.format(math.factorial(6)))
 pp(1,'pi: {0}'.format(math.pi))
 pp(1,'e: {0}'.format(math.e))
+
+
+
+pp(0,'\n\n#=== pg.9 start ===')
+pp(0,'\n==== PACKAGES ====')
+
+pp(1,'>>>> TODO <<<< sample code on packages ...') # TODO
+
+
+
+## Q. 1 (EASY) list, dicts, lotto numbers - TODO
+'''
+Write a python script to determine the following system 
+information. Import the platform module. Find out the 
+machine(), node, operating system, current value of 
+the ‘PATH’ and other relevant configuration variables. 
+Display the information in a tidy manner.
+'''
+
+
+
+
+## Q. 2 (MEDIUM) list, dicts, lotto numbers - TODO
+'''
+Use the api documentation only to find out information 
+on the necessary functions to carry out the following 
+tasks. Don’t use youtube! Write a python script to 
+encrypt a password. Use the timeit function to time 
+it takes to encrypt the data.
+'''
