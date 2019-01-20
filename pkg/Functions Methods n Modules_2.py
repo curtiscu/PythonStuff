@@ -2,12 +2,15 @@
 #=== pg.5 start ===
 
 '''
+python is pass by name, not pass by reference/ value
+if you change what the variable points to inside a
+function, the outside/ external pointer to that object
+remains unchanged. if you modify the contents of what's
+pointed to, that change is persisted outside the function
 
- ..if we pass by reference and then change the reference within
- the function then the original reference remains unchanged.
- For example if a list is created and it is assign a new
- reference the old list is unchanged. If the function simply
- updates, or modifies the list then the reference remains the same.
+see:
+https://docs.python.org/3/faq/programming.html#how-do-i-write-a-function-with-output-parameters-call-by-reference
+https://jeffknupp.com/blog/2012/11/13/is-python-callbyvalue-or-callbyreference-neither/
 
 '''
 
@@ -23,12 +26,17 @@ def changeup_list(sList):
     sList = [100,101,102,103,104,105]
     pp(1,'sList changed in func: {}'.format(sList))
 
+def append_to_list(aList):
+    aList.append(666)
+    pp(1,'sList appended to in func: {0}'.format(aList))
 
 def main():
     sList = [0, 1, 2, 3, 4, 5]
-    pp(0,'sList before: {}'.format(sList))
+    pp(0,'sList before changeup: {}'.format(sList))
     changeup_list(sList)
-    pp(0,'sList after: {}'.format(sList))
+    pp(0,'sList after changeup: {}'.format(sList))
+    append_to_list(sList)
+    pp(0, 'sList after append: {}'.format(sList))
 
 main()
 
