@@ -12,7 +12,7 @@ def pp(tab_count, str):
 
 
 # when the file is run, functions are defined but code
-# isn't executed. it *ay* be executed later in the file
+# isn't executed. it *may* be executed later in the file
 # if the defined function is actually called....
 
 # === pg.1 follows ===
