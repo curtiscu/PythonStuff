@@ -4,12 +4,11 @@
 
 '''
 
-On the first instance of loading the module is initialised by
-executing the code in the module. If another module in the code
-imports the same module it is not loaded a second time. There
-are many commonly used modules in python. It is worth noting that
-some modules are only available for Python 2.X and others are
-available for Python 3.
+Code executed on first load of a module, skipped on
+subsequent loads.
+
+Be aware of differences in available modules
+between python 2x and 3x
 
 See: https://docs.python.org/3.7/py-modindex.html
 
@@ -65,11 +64,11 @@ pp(1,'>>>> TODO <<<< sample code on packages ...') # TODO
 
 ## Q. 1 (EASY) list, dicts, lotto numbers - TODO
 '''
-Write a python script to determine the following system 
-information. Import the platform module. Find out the 
-machine(), node, operating system, current value of 
-the ‘PATH’ and other relevant configuration variables. 
-Display the information in a tidy manner.
+Write script to ...
+- Import the platform module. 
+- Find out the machine(), node, operating system
+- ‘PATH’ plus other related config 
+- pretty print/ layout the results.
 '''
 
 
@@ -77,9 +76,6 @@ Display the information in a tidy manner.
 
 ## Q. 2 (MEDIUM) list, dicts, lotto numbers - TODO
 '''
-Use the api documentation only to find out information 
-on the necessary functions to carry out the following 
-tasks. Don’t use youtube! Write a python script to 
-encrypt a password. Use the timeit function to time 
-it takes to encrypt the data.
+Review API to create a password encryption script.
+Time the operation using the 'timeit' function.
 '''
