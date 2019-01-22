@@ -61,8 +61,8 @@ pp(0,'\n==== PACKAGES ====')
 pp(1,'>>>> TODO <<<< sample code on packages ...') # TODO
 
 
-
-## Q. 1 (EASY) list, dicts, lotto numbers - TODO
+pp(0,'\n==== QUESTIONS ====')
+## Q. 1 - TODO
 '''
 Write script to ...
 - Import the platform module. 
@@ -71,11 +71,46 @@ Write script to ...
 - pretty print/ layout the results.
 '''
 
+pp(1,'Q.1 (EASY) platform & PATH stuff..') # TODO
 
+import platform as pl
+pp(2,'platform: {0}'.format(pl.machine()))
+pp(2,'node: {0}'.format(pl.node()))
+pp(2,'platform: {0}'.format(pl.platform()))
+pp(2, 'os PATH: {0}'.format(os.environ['PATH']))
 
-
-## Q. 2 (MEDIUM) list, dicts, lotto numbers - TODO
+## Q. 2 (MEDIUM) - TODO
 '''
 Review API to create a password encryption script.
 Time the operation using the 'timeit' function.
 '''
+
+pp(1,'>>>> TODO <<<< Q. 2 (MEDIUM) encryption and timing stuff ...') # TODO
+
+'''
+From: https://blog.ruanbekker.com/blog/2018/04/29/encryption-and-decryption-with-simple-crypt-using-python/
+$ pip install simple-crypt
+'''
+
+from simplecrypt import encrypt, decrypt
+passwurd = 'p@ssW0rd'
+msg = 'somethingToB3K3ptS3cr3t'
+
+def encMyString(my_string):
+    return encrypt(passwurd, my_string)
+
+
+
+# encText = encrypt(passwurd, msg)
+
+encText = encMyString(msg)
+
+pp(1, 'My encrypted text is: {0}'.format(encText))
+
+'''
+See: https://docs.python.org/3.7/library/timeit.html?highlight=timeit#timeit.Timer.timeit
+
+'''
+from timeit import timeit as ti
+
+ti(encText)
