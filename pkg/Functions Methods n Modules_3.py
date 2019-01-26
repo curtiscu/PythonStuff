@@ -96,21 +96,26 @@ from simplecrypt import encrypt, decrypt
 passwurd = 'p@ssW0rd'
 msg = 'somethingToB3K3ptS3cr3t'
 
-def encMyString(my_string):
-    return encrypt(passwurd, my_string)
+def encMyString():
+    return encrypt(passwurd, msg)
 
 
 
 # encText = encrypt(passwurd, msg)
 
-encText = encMyString(msg)
+# placeholder
+encText = ''
 
+
+
+'''
+For more info, see...
+    https://docs.python.org/3.7/library/timeit.html?highlight=timeit#timeit.Timer.timeit
+'''
+from timeit import timeit
+
+# this never completes, hangs in the attempt, never
+# gets to subsequent pp() statements...
+howLong = timeit('encText = encMyString()', globals=globals())
 pp(1, 'My encrypted text is: {0}'.format(encText))
-
-'''
-See: https://docs.python.org/3.7/library/timeit.html?highlight=timeit#timeit.Timer.timeit
-
-'''
-from timeit import timeit as ti
-
-ti(encText)
+pp(1, 'Time for encryption is: {0}'.format(howLong))
