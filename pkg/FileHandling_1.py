@@ -2,7 +2,8 @@
 '''
 
 Useful doc...
-    https://docs.python.org/3/tutorial/inputoutput.html#methods-of-file-objects
+    https://realpython.com/working-with-files-in-python/ \n
+    https://docs.python.org/3/tutorial/inputoutput.html#methods-of-file-objects \n
     https://www.datacamp.com/community/tutorials/reading-writing-files-python
 
 '''
