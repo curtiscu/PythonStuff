@@ -5,6 +5,8 @@
 Useful doc...
 
     https://docs.python.org/3/library/csv.html \n
+    https://realpython.com/python-csv/ \n
+    https://stackoverflow.com/questions/19210973/python-understaning-csv-module-and-line-num-object \n
 
 
 '''
