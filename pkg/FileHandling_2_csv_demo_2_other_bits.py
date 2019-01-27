@@ -1,5 +1,6 @@
 
 
+import csv
 from csv import DictReader
 
 # utility function by curtiscu
@@ -82,7 +83,31 @@ def dict_reader_out3():
 
         pp(0,'Marion: {0}, Pinellas: {1}'.format(marion_counter, pinellas_counter))
 
+def sniffer_counting():
+    with open('FL_insurance_sample.csv', newline='\n') as csvfile:
+        file_dialect = csv.Sniffer().sniff(csvfile.readline(), delimiters=[',', '\t'])
+
+        # reset after taking previous sample
+        csvfile.seek(0)
+
+        csv_reader = csv.DictReader(csvfile, dialect=file_dialect)
+
+        marion = 0
+        pinellas = 0
+
+        for row in csv_reader:
+
+            if (row['county'] == 'MARION COUNTY'):
+                marion += 1
+            elif (row['county'] == 'PINELLAS COUNTY'):
+                pinellas += 1
+
+        pp(0,"Marion: {0}, Pinellas: {1}".format(marion, pinellas))
+
+
 # testing the variations...
 # dict_reader_out1()
 #dict_reader_out2()
-dict_reader_out3()
+#dict_reader_out3()
+
+sniffer_counting()
