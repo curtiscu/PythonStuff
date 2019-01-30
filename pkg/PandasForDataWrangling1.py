@@ -95,6 +95,17 @@ class basics_demo_data_frame:
         pp(0,'\nCall to {}'.format(self))
         pass
 
+    def df_init(self):
+        bd_c = { 'yr_sem':['2019_1', '2019_2', '2019_1', '2019_2'],
+                 'stu':['001234', '001234', '001122', '001122'],
+                 'BI_ML':[55, 66, 65, 67],
+                 'BDA_DSP':[36, 70, 68, 71],
+                 'DA_PRJ':[60, 70, 70, 72]}
+
+        student_marks = pd.DataFrame(bd_c, columns=['yr_sem','stu','BI_ML','BDA_DSP','DA_PRJ'])
+
+        print('\n')
+        print(student_marks)
 
 '''
 ##
@@ -130,4 +141,5 @@ bd.series_maths_funcs()
 
 # instantiate object to access code
 df = basics_demo_data_frame()
-df.first_func()
+
+df.df_init()
