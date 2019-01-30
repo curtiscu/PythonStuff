@@ -249,6 +249,26 @@ class basics_demo_data_frame:
         print('\nhtml...\n{}'.format(sub_table.to_html()))
         print('\njson...\n{}'.format(sub_table.to_json()))
 
+    def df_misc_funcs(self):
+        a_ports_csv = pd.read_csv(os.path.normpath('airports.csv'),
+                                  header=0,
+                                  index_col=0)
+
+        sub_table = a_ports_csv[['name','latitude_deg','longitude_deg']]
+
+        sub_table = sub_table[(sub_table.latitude_deg > 80)]
+
+        print('\ndata so far...\n{}'.format(sub_table))
+
+        # TODO: stuff to try...
+        '''
+            df.dropna(how=’any’)
+            df.fillna(value=’1.0’)
+            df.sort_values(by=”latitude_degree”)  df.groupby(“continent”).size()
+            df.groupby(“continent”).size()
+        
+        '''
+
 
 # instantiate object to access code
 df = basics_demo_data_frame()
@@ -267,6 +287,7 @@ df.df_inspect_init()
 
 df.df_select_init()
 
+df.df_formatting_tests()
 '''
 
-df.df_formatting_tests()
+df.df_misc_funcs()
