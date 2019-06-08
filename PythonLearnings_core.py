@@ -214,7 +214,7 @@ builtins.__build_class__ = old_bc
 # ### Use metaclass to enforce constraints on subclass....
 # 
 
-# In[81]:
+# In[99]:
 
 
 class BaseMeta(type):
@@ -224,6 +224,10 @@ class BaseMeta(type):
         if not m in body:
             raise TypeError("Bad subclass, missing '{0}' in subclass '{1}' bad user!".format(m, name))
         return super().__new__(cls, name, bases, body)
+    
+    def __init_subclass__():
+        print('BaseMeta.__init_subclass() called ..')
+        
 
 class MyBase(metaclass=BaseMeta):
     def foo(self):
@@ -235,13 +239,15 @@ class MyBase(metaclass=BaseMeta):
     def bar(self):
         pass
     
+    def __init_subclass__(self, *a, **kw):
+        print("MyBase.__init_subclass__ called...")
+        
 
 
-# In[82]:
+# In[100]:
 
 
 class MyDerivedMeta(MyBase):
-    pass
     def bar(self):
        return 'bar'
 
@@ -251,4 +257,96 @@ class MyDerivedMeta(MyBase):
 
 mdm = MyDerivedMeta()
 mdm.bar()
+
+
+# In[83]:
+
+
+mdm.
+
+
+# ## Exploring functions, live...
+# 
+
+# In[101]:
+
+
+def add(x, y=10):
+    return x + y
+
+
+# In[103]:
+
+
+add(5, 9) 
+add(2)
+
+
+# In[104]:
+
+
+add
+
+
+# In[111]:
+
+
+# show default params..
+add.__defaults__
+
+# ask name
+add.__name__
+
+# get varianble names
+add.__code__.co_varnames
+
+from inspect import getsource, getfile
+print(getsource(add))  # get the actual function code...
+getfile(add)  # find out file it's defined in...
+
+
+# ## Decorators
+
+# In[112]:
+
+
+# TODO ...
+
+
+# ## Generators
+# 
+# ::TODO:: ...
+# 
+# Can be used to  ...
+# * do step by step computation and yield result and/ or control after each step
+# * force sequencing of code.
+# 
+# https://wiki.python.org/moin/Generators
+# 
+# .. TODO finish fleshing this out!
+# 
+
+# In[115]:
+
+
+# very different implementations, hard to see
+# difference when using them, give same result
+
+def add1(x, y):
+    return x + y
+
+class Adder:
+    def __call__(self, x, y):
+        return x + y
+    
+add2 = Adder()
+    
+    
+
+
+# In[114]:
+
+
+add1(2, 7)
+add2(2, 7)
 
