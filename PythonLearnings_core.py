@@ -20,7 +20,7 @@
 # - class/ inheritance protocol or hierarchy to find someting in an object
 # - key caveats around how Python OO works
 
-# In[ ]:
+# In[1]:
 
 
 # x + y -> __add__
@@ -29,7 +29,7 @@
 # len(x) -> __len__
 
 
-# In[ ]:
+# In[2]:
 
 
 
@@ -40,7 +40,7 @@ from IPython.core.interactiveshell import InteractiveShell
 InteractiveShell.ast_node_interactivity = "all"
 
 
-# In[ ]:
+# In[3]:
 
 
 
@@ -63,27 +63,27 @@ class Polynomnom:
         
 
 
-# In[ ]:
+# In[4]:
 
 
 p1 = Polynomnom(1,2,3)
 p2 = Polynomnom(7,4,3)
 
 
-# In[ ]:
+# In[5]:
 
 
 p1
 p2
 
 
-# In[ ]:
+# In[6]:
 
 
 p1 + p2
 
 
-# In[ ]:
+# In[7]:
 
 
 len(p1)
@@ -98,7 +98,7 @@ len(p1)
 
 # First, setup assertions in derived class to ensure that the parent/ base class has the required methods we need to function properly, i.e. user-level derived class enforcing constraints on library-level code.
 
-# In[ ]:
+# In[22]:
 
 
 class Base:
@@ -106,12 +106,13 @@ class Base:
         return 'foo'
     
     def __repr__(self):
-        print("hello from base!")
-        bloop()
+        return "hello from base!"
+        
+        
     
 
 
-# In[ ]:
+# In[23]:
 
 
 
@@ -127,17 +128,17 @@ class Dervived(Base):
     
 
 
-# In[ ]:
+# In[24]:
 
 
 d1 = Dervived()
 d1.bar()
 
 
-# ### Testing dissassembling stuff...
+# ### Exploring dissassembling stuff...
 # 
 
-# In[ ]:
+# In[11]:
 
 
 def blah():
@@ -150,8 +151,9 @@ dis(blah)
 
 
 # ### Hooking into class creation mechanism..
+# This is not a solution you'd typically use, apparently, but exploring it anyways...
 
-# In[ ]:
+# In[12]:
 
 
 old_bc = __build_class__
@@ -169,19 +171,84 @@ import builtins
 builtins.__build_class__ = my_build_class
 
 
-# In[ ]:
+# In[35]:
 
 
 class Derived2(Base):
     def bar(self):
         print("Hello from Derived2.bar :)")
-    
+        
+    # example of calling parent class functions
+    # that have been overridden in subclass...
+    def __repr__(self):
+        return super().__repr__() + "; hello from Derived2!"
     
 
 
-# In[ ]:
+# In[36]:
 
 
 d2 = Derived2()
 d2
+
+
+# NOTE: d2 -> instanceof -> Dervived2 -> instanceof -> type
+
+# In[39]:
+
+
+isinstance(d2, Derived2)
+
+isinstance(Derived2, type)
+
+
+# Return default class builder...
+# 
+
+# In[49]:
+
+
+builtins.__build_class__ = old_bc
+
+
+# ### Use metaclass to enforce constraints on subclass....
+# 
+
+# In[81]:
+
+
+class BaseMeta(type):
+    def __new__(cls, name, bases, body):
+        print('BaseMeta.__new__', cls, name, bases, body)
+        m = 'bar'
+        if not m in body:
+            raise TypeError("Bad subclass, missing '{0}' in subclass '{1}' bad user!".format(m, name))
+        return super().__new__(cls, name, bases, body)
+
+class MyBase(metaclass=BaseMeta):
+    def foo(self):
+        return self.bar()
+    
+    # required to compile as all subclasses of BaseMeta
+    # must have this method implemented, but just using
+    # a stub here for now ...
+    def bar(self):
+        pass
+    
+
+
+# In[82]:
+
+
+class MyDerivedMeta(MyBase):
+    pass
+    def bar(self):
+       return 'bar'
+
+
+# In[66]:
+
+
+mdm = MyDerivedMeta()
+mdm.bar()
 
